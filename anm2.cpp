@@ -255,6 +255,6 @@ namespace anm2
       content = Content(contentElement, textureCallback, soundCallback);
     if (auto animationsElement = element->FirstChildElement("Animations")) animations = Animations(animationsElement);
 
-    std::filesystem::currentPath(previousPath);
+    std::filesystem::current_path(previousPath);
   }
 }
