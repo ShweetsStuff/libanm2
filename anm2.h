@@ -1,7 +1,7 @@
 #pragma once
 
-#include <functional>
 #include <tinyxml2/tinyxml2.h>
+#include <functional>
 
 #include <filesystem>
 #include <map>
@@ -50,10 +50,14 @@ namespace anm2
   class Info
   {
   public:
+
+  #ifndef ANM2_LITE
     std::string createdBy{"robot"};
     std::string createdOn{};
-    int fps = 30;
     int version{};
+#endif
+
+    int fps = 30;
 
     Info() = default;
     Info(tinyxml2::XMLElement*);
