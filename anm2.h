@@ -143,6 +143,7 @@ namespace anm2
   {
   public:
     std::vector<Frame> frames{};
+    std::vector<Frame>& triggers = frames;
     bool isVisible{};
 
     Item() = default;
