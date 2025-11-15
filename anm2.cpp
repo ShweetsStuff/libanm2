@@ -191,21 +191,19 @@ namespace anm2
     element->QueryIntAttribute("FrameNum", &frameNum);
     element->QueryBoolAttribute("Loop", &isLoop);
 
+    int id{-1};
+
     if (auto rootAnimationElement = element->FirstChildElement("RootAnimation"))
-    {
-      int rootId{};
-      rootAnimation = Item(rootAnimationElement, ROOT, rootId);
-    }
+      rootAnimation = Item(rootAnimationElement, ROOT, id);
 
     if (auto layerAnimationsElement = element->FirstChildElement("LayerAnimations"))
     {
       for (auto child = layerAnimationsElement->FirstChildElement("LayerAnimation"); child;
            child = child->NextSiblingElement("LayerAnimation"))
       {
-        int layerId{};
-        Item layerAnimation(child, LAYER, layerId);
-        layerOrder.push_back(layerId);
-        layerAnimations.emplace(layerId, std::move(layerAnimation));
+        Item layerAnimation(child, LAYER, id);
+        layerOrder.push_back(id);
+        layerAnimations.emplace(id, std::move(layerAnimation));
       }
     }
 
@@ -214,17 +212,13 @@ namespace anm2
       for (auto child = nullAnimationsElement->FirstChildElement("NullAnimation"); child;
            child = child->NextSiblingElement("NullAnimation"))
       {
-        int nullId{};
-        Item nullAnimation(child, NULL_, nullId);
-        nullAnimations.emplace(nullId, std::move(nullAnimation));
+        Item nullAnimation(child, NULL_, id);
+        nullAnimations.emplace(id, std::move(nullAnimation));
       }
     }
 
     if (auto triggersElement = element->FirstChildElement("Triggers"))
-    {
-      int triggerId{};
-      triggers = Item(triggersElement, TRIGGER, triggerId);
-    }
+      triggers = Item(triggersElement, TRIGGER, id);
   }
 
   Animations::Animations(XMLElement* element)
