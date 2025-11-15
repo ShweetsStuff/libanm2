@@ -139,11 +139,13 @@ namespace anm2
     Frame(tinyxml2::XMLElement*, Type);
   };
 
+  using Trigger = Frame;
+
   class Item
   {
   public:
     std::vector<Frame> frames{};
-    std::vector<Frame>& triggers = frames;
+    std::vector<Trigger>& triggers = frames;
     bool isVisible{};
 
     Item() = default;
