@@ -123,7 +123,7 @@ namespace anm2
     Vec2 position{};
     Vec2 pivot{};
     Vec2 size{};
-    Vec2 scale{};
+    Vec2 scale{100, 100};
     float rotation{};
     int duration{};
     Vec4 tint{1.0f, 1.0f, 1.0f, 1.0f};
