@@ -240,7 +240,7 @@ namespace anm2
     }
 
     auto previousPath = std::filesystem::current_path();
-    std::filesystem::current_path(path);
+    std::filesystem::current_path(path.parent_path());
 
     auto element = document.RootElement();
 
